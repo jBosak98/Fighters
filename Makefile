@@ -3,4 +3,3 @@ NAME = Fighters
 
 build:
 	g++ $(FLAGS) $(NAME) main.cpp
-	rm -f *.o
