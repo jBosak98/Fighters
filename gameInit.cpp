@@ -18,6 +18,7 @@ void keyboardInputs(Player &player){
   if(Keyboard::isKeyPressed(Keyboard::Left)) player.horizontalMotion = GOES_LEFT;
   if(Keyboard::isKeyPressed(Keyboard::Up)) player.verticalMotion = GOES_UP;
   if(Keyboard::isKeyPressed(Keyboard::Down)) player.verticalMotion = GOES_DOWN;
+  if(Keyboard::isKeyPressed(Keyboard::Space)) player.operation = JUMP;
 }
 
 
