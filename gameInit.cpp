@@ -1,64 +1,63 @@
 #include "main.h"
 #include "values.h"
 #include <list>
+#include <iostream>
 
 
-
-
-void createBackground(RenderWindow &app){
-  Texture backgroundTexture;
-  backgroundTexture.loadFromFile(BACKGROUND_TEXTURE);
-  Sprite background(backgroundTexture);
-  app.draw(background);
-}
 void isDesireToClose(RenderWindow &app){
   Event event;
-
   while(app.pollEvent(event)) {
     if((event.type == Event::Closed) ||
        (Keyboard::isKeyPressed(Keyboard::Escape)))
-      app.close();
-
-  }
-
+        app.close();
+      }
 }
+
 void keyboardInputs(Player &player){
-  if(Keyboard::isKeyPressed(Keyboard::Right)) player.actionPrimary = GOES_RIGHT;
-  if(Keyboard::isKeyPressed(Keyboard::Left)) player.actionPrimary = GOES_LEFT;
-  if(Keyboard::isKeyPressed(Keyboard::Up)) player.actionSecondary = GOES_UP;
-  if(Keyboard::isKeyPressed(Keyboard::Down)) player.actionSecondary = GOES_DOWN;
+  if(Keyboard::isKeyPressed(Keyboard::Right)) player.horizontalMotion = GOES_RIGHT;
+  if(Keyboard::isKeyPressed(Keyboard::Left)) player.horizontalMotion = GOES_LEFT;
+  if(Keyboard::isKeyPressed(Keyboard::Up)) player.verticalMotion = GOES_UP;
+  if(Keyboard::isKeyPressed(Keyboard::Down)) player.verticalMotion = GOES_DOWN;
 }
-void loop(RenderWindow &app, std::list<Entity*> &entities){
+
+
+
+void loop(RenderWindow &app, std::list<Entity*> &entities, Sprite background){
   while (app.isOpen()) {
     isDesireToClose(app);
-
-
     app.clear();
-    createBackground(app);
-
+    app.draw(background);
     for(auto i:entities){
+      i->update();
       if(i->name.compare("player") == 0){
         Player *player =(Player*) i;
         keyboardInputs(*player);
+
       }
-      i->update();
       i->draw(app);
     }
     app.display();
   }
 }
+
 void gameStart(){
   RenderWindow app(VideoMode(APP_WIDTH,APP_HEIGHT), GAME_NAME);
   app.setFramerateLimit(60);
 
-
   std::list<Entity*> entities;
   Player *player = new Player();
+
+  Texture playerTexture;
+  playerTexture.loadFromFile(PLAYER_TEXTURE);
+  Animation playerAnimation(playerTexture,80,80);
+
+  player->settings(playerAnimation,APP_WIDTH/2,APP_HEIGHT/2, RIGHT);
   entities.push_back(player);
 
-  player->x = APP_WIDTH/2;
-  player->y = APP_HEIGHT/2;
+  Texture backgroundTexture;
+  backgroundTexture.loadFromFile(BACKGROUND_TEXTURE);
+  Sprite background(backgroundTexture);
 
-  loop(app, entities);
+  loop(app, entities, background);
 
 }
