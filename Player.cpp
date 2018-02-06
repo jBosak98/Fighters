@@ -32,20 +32,24 @@ public:
     switch(action){
       case GOES_RIGHT:
       direction = RIGHT;
-      x += speed;
+      if(x<=APP_WIDTH)
+        x += speed;
       break;
 
       case GOES_LEFT:
       direction = LEFT;
-      x -= speed;
+      if(x>=0)
+        x -= speed;
       break;
 
       case GOES_UP:
-      y -= speed;
+      if(y>=40)
+        y -= speed;
       break;
 
       case GOES_DOWN:
-      y += speed;
+      if(y<=APP_HEIGHT - 50)
+        y += speed;
       break;
 
       case NONE:
