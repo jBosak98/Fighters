@@ -7,17 +7,21 @@
 
 
 //////action//////
-#define NONE 0
-#define GOES_UP 1
-#define GOES_DOWN 2
-#define GOES_LEFT 3
-#define GOES_RIGHT 4
-#define ATTACK 5
-#define JUMP 6
-#define DEFEND 7
+#define NONE 100
+#define GOES_UP 101
+#define GOES_DOWN 102
+#define GOES_LEFT 103
+#define GOES_RIGHT 104
+#define ATTACK 105
+#define JUMP 106
+#define DEFEND 107
 ///////resolution//////
 #define APP_HEIGHT 800
 #define APP_WIDTH 1200
+
+///////direction//////
+#define RIGHT 0
+#define LEFT 1
 
 
 
