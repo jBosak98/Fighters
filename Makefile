@@ -1,10 +1,6 @@
 FLAGS= -g -Wall -Wextra -lsfml-window -lsfml-graphics -lsfml-system -o
 NAME = Fighters
-OBJECTS = main.o
 
-build: $(OBJECTS)
-	g++ $(FLAGS) $(NAME) $(OBJECTS)
+build:
+	g++ $(FLAGS) $(NAME) main.cpp
 	rm -f *.o
-
-main.o: main.cpp
-	g++ -c $(FLAGS) main.o main.cpp
