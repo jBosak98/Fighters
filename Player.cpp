@@ -7,14 +7,14 @@ public:
   bool thrustAttack;
   int horizontalMotion;
   int verticalMotion;
-  int lastAction;
+
 
   Player(){
     name = "player";
     horizontalMotion = NONE;
-    lastAction = NONE;
+    verticalMotion = NONE;
   }
-  
+
   void update(){
     performAction(horizontalMotion);
     performAction(verticalMotion);
@@ -23,7 +23,6 @@ public:
     } else {anim.indexTexture = 0 + direction;}
     anim.update();
 
-    lastAction = horizontalMotion;
     horizontalMotion = NONE;
     verticalMotion = NONE;
   }
