@@ -1,4 +1,6 @@
 #include "values.h"
+#include <SFML/Graphics.hpp>
+
 
 class Entity{
 public:
@@ -11,6 +13,7 @@ public:
   Entity(){isAlive=1;}
 
   void settings(Animation &a, int X, int Y,int dir){
+
     x = X;
     y = Y;
     anim = a;

@@ -1,5 +1,7 @@
 #include "main.h"
 #include "values.h"
+using namespace sf;
+#include <SFML/Graphics.hpp>
 
 
 class Player: public Entity{
@@ -11,9 +13,8 @@ public:
   int jumpStep = 0;
 
 
-  Player(){
-    name = "player";
-
+  Player(String n){
+    name = n;
     horizontalMotion = NONE;
     verticalMotion = NONE;
   }
@@ -26,7 +27,7 @@ public:
       performAction(verticalMotion);
       if(horizontalMotion != NONE || verticalMotion != NONE){
         anim.walk(direction);
-      } else {anim.indexTexture = 0 + direction;}
+      }  else {anim.indexTexture = 0 + direction;}
     }
 
     anim.update();
